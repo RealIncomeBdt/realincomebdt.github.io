@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        #progressBar {
+            width: 100%;
+            background-color: #ddd;
+            margin-bottom: 20px;
+        }
+        #progress {
+            width: 0%;
+            height: 20px;
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    <div id="progressBar">
+        <div id="progress"></div>
+    </div>
+    <div id="numbers"></div>
 
+    <script>
+        // Function to display numbers from 1 to 100
+        function displayNumbers() {
+            var numbersDiv = document.getElementById("numbers");
+            var progressBar = document.getElementById("progress");
+            var width = 0;
+
+            // Loop to display numbers with a slight delay for visual effect
+            for (var i = 1; i <= 100; i++) {
+                setTimeout(function (number) {
+                    return function () {
+                        numbersDiv.innerHTML += number + "<br>";
+                        width += 1;
+                        progressBar.style.width = width + "%";
+
+                        // When all numbers are displayed, open a new page
+                        if (number === 100) {
+                            window.location.href = "newpage.html";
+                        }
+                    };
+                }(i), i * 50); // Adjust delay time here
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = displayNumbers;
+    </script>
+</body>
+</html>
